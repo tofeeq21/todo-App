@@ -49,7 +49,7 @@ const Task = () => {
           })}
           {showPopUp ? (
             <UpdateTask
-              currentTask={tasks.taskOnEdit}
+              currentTask={tasks.taskOnEdit!}
               closePopUp={setShowPopUp}
             />
           ) : null}

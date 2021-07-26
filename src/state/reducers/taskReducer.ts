@@ -4,11 +4,11 @@ import { TaskType } from "../../interfaces";
 
 interface InitialStateType {
     tasks:TaskType[]
-    taskOnEdit: TaskType;
+    taskOnEdit: TaskType | null;
 }
 const initialState:InitialStateType = {
     tasks: [],
-    taskOnEdit : {id:"", text:"", date:new Date()}
+    taskOnEdit : null
 }
 
 const taskReducer = (state = initialState, action: Action) => {
@@ -24,10 +24,10 @@ const taskReducer = (state = initialState, action: Action) => {
     }
 
     case actionType.UPDATE: {
-        const tk = state.tasks.find(task => task.id === state.taskOnEdit.id)
+        const tk = state.tasks.find(task => task.id === state.taskOnEdit!.id)
         if(tk){
-          tk.text = state.taskOnEdit.text;
-          tk.date = state.taskOnEdit.date;
+          tk.text = state.taskOnEdit!.text;
+          tk.date = state.taskOnEdit!.date;
         }
       return {...state}
     }

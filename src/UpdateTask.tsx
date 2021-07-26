@@ -22,9 +22,18 @@ const UpdateTask = ({currentTask,closePopUp} : UpdateProps) => {
     const {taskOnEdit, updateTask} = bindActionCreators(actionCreators,dispatch);
 
     const updating = () => {
+      if(!updatedTask.text){
+        alert("please enter a task to update")
+        return
+      }
+      if(updatedTask.date < new Date()){
+        alert("please add a date for a task");
+        return
+      }
        taskOnEdit(updatedTask)
        updateTask()
-      setDoneUpdating(true)
+       setDoneUpdating(true)
+      
     }
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +62,7 @@ const UpdateTask = ({currentTask,closePopUp} : UpdateProps) => {
                 name="date"
                 value={updatedTask.date.toString()}
                 onChange={changeHandler}
+                placeholder="Add Date & Time"
               />
             </div>
           </form>
